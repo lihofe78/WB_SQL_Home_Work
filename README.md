@@ -50,11 +50,13 @@ SELECT FROM WHERE GROUP BY HAVING ORDER BY LIMIT
 2.	 Какая команда позволит вам удалить строки таблицы по условию? Можно ли удалить таблицу с помощью данной команды?
 Команда DELETE удаляет строки, но с ее помощью нельзя удалить таблицу
 Для этого есть команда DROP
+
 3.	Вам даны таблицы users, orders с информацией о пользователях и заказах. Отберите тех пользователей, кто оформлял заказы осенью 2022 года.
 SELECT DISTINCT u.*
 FROM users u
 JOIN orders o ON u.id = o.user_id
 WHERE TO_DATE(o._order_date, 'DD/MM/YYYY') BETWEEN TO_DATE('01/09/2022', 'DD/MM/YYYY') AND TO_DATE('30/11/2022', 'DD/MM/YYYY')
+
      	4.
 	UPDATE orders
 SET price = price * 0.9
@@ -80,6 +82,7 @@ FROM orders o;
 	5. 
 	DELETE FROM orders
 	WHERE status = 'cancelled' OR items > 4
+ 
 6. 
 SELECT SUBSTRING(email FROM POSITION('@' IN email) + 1) AS domain,
        COUNT(*) AS users_count
@@ -88,6 +91,7 @@ WHERE gender = 'Male'
 GROUP BY domain
 ORDER BY users_count DESC
 LIMIT 3
+
 7. Объясните, отработает ли приведенный ниже код в СУБД PostgreSQL (и почему):
 SELECT old_price - new_price AS diff 
 FROM goods 
