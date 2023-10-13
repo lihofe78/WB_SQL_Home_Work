@@ -47,16 +47,18 @@ SELECT FROM WHERE GROUP BY HAVING ORDER BY LIMIT
 **Написание команд:** SELECT FROM WHERE GROUP BY HAVING ORDER BY LIMIT
 
 **Выполнение команд:** FROM WHERE GROUP BY HAVING SELECT ORDER BY LIMIT 
+
 2.	 Какая команда позволит вам удалить строки таблицы по условию? Можно ли удалить таблицу с помощью данной команды?
+
 Команда DELETE удаляет строки, но с ее помощью нельзя удалить таблицу
 Для этого есть команда DROP
 
 3.	Вам даны таблицы users, orders с информацией о пользователях и заказах. Отберите тех пользователей, кто оформлял заказы осенью 2022 года.
-SELECT DISTINCT u.*
-FROM users u
-JOIN orders o ON u.id = o.user_id
-WHERE TO_DATE(o._order_date, 'DD/MM/YYYY') BETWEEN TO_DATE('01/09/2022', 'DD/MM/YYYY') AND TO_DATE('30/11/2022', 'DD/MM/YYYY')
 
+3.	SELECT DISTINCT u.*
+	FROM users u
+	JOIN orders o ON u.id = o.user_id
+	WHERE TO_DATE(o._order_date, 'DD/MM/YYYY') BETWEEN TO_DATE('01/09/2022', 'DD/MM/YYYY') AND TO_DATE('30/11/2022', 'DD/MM/YYYY')
      	4.
 	UPDATE orders
 	SET price = price * 0.9
