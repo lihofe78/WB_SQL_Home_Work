@@ -59,17 +59,17 @@ WHERE TO_DATE(o._order_date, 'DD/MM/YYYY') BETWEEN TO_DATE('01/09/2022', 'DD/MM/
 
      	4.
 	UPDATE orders
-SET price = price * 0.9
-WHERE user_id = (
-    SELECT user_id
-    FROM orders
-    GROUP BY user_id
-    ORDER BY SUM(price) DESC
-    LIMIT 1
-);
+	SET price = price * 0.9
+	WHERE user_id = (
+    	SELECT user_id
+    	FROM orders
+    	GROUP BY user_id
+    	ORDER BY SUM(price) DESC
+    	LIMIT 1
+	);
 
-SELECT o.*, 
-       CASE WHEN o.user_id = (
+	SELECT o.*, 
+       	CASE WHEN o.user_id = (
            SELECT user_id
            FROM orders
            GROUP BY user_id
@@ -77,25 +77,25 @@ SELECT o.*,
            LIMIT 1
        ) THEN 10 ELSE 0 END AS discount,
        o.price AS new_price
-FROM orders o;
+	FROM orders o;
 
 	5. 
 	DELETE FROM orders
 	WHERE status = 'cancelled' OR items > 4
  
-6. 
-SELECT SUBSTRING(email FROM POSITION('@' IN email) + 1) AS domain,
-       COUNT(*) AS users_count
-FROM users
-WHERE gender = 'Male'
-GROUP BY domain
-ORDER BY users_count DESC
-LIMIT 3
+	6. 
+	SELECT SUBSTRING(email FROM POSITION('@' IN email) + 1) AS domain,
+      	 COUNT(*) AS users_count
+	FROM users
+	WHERE gender = 'Male'
+	GROUP BY domain
+	ORDER BY users_count DESC
+	LIMIT 3
 
-7. Объясните, отработает ли приведенный ниже код в СУБД PostgreSQL (и почему):
-SELECT old_price - new_price AS diff 
-FROM goods 
-WHERE diff > 100
+	7. Объясните, отработает ли приведенный ниже код в СУБД PostgreSQL (и почему):
+	SELECT old_price - new_price AS diff 
+	FROM goods 
+	WHERE diff > 100
 Нет, код не будет работать, тк мы пытаемся использовать алиас в команде WHERE, это невозможно, тк WHERE выполняется раньше, чем SELECT (в котором мы и здаем данный алиас)
 
 
