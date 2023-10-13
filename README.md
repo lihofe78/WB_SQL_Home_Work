@@ -95,6 +95,7 @@ SELECT FROM WHERE GROUP BY HAVING ORDER BY LIMIT
 	LIMIT 3
 
 7. Объясните, отработает ли приведенный ниже код в СУБД PostgreSQL (и почему):
+   
 	SELECT old_price - new_price AS diff 
 	FROM goods 
 	WHERE diff > 100
